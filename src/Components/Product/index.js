@@ -6,12 +6,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material'
+import './style.css'
 
 
 export default function Products(props) {
   const product = props.product;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} xs={4} md={4}>
       <CardActionArea>
         <CardMedia
           component="img"
