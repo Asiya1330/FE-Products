@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from './Pages/Dashboard';
+import Dashboard from './Pages/Dashboard';
 
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(<Dashboard />, document.querySelector("#root"));
