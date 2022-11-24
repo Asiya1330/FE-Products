@@ -1,35 +1,25 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react';
+import TextField from '@mui/material/TextField'
+import { getQueryProducts } from '../../Actions/index'
 
-class App extends React.Component{
-    constructor(props){
-        super(props);
+import { useDispatch, useSelector } from 'react-redux'
+import './style.css'
+
+export default function SearchBar() {
+    const state = useSelector(state => state);
+    console.log(state);
+    const [nameQuery, setNameQuery] = useState('');
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(getQueryProducts(nameQuery));
+    },[nameQuery])
+
+    const onSearchChange = (event) => {
+        setNameQuery(event.target.value);
     }
-    state={
-        term:'',
-        password:''
-    }
-    onInputChange(event){
-        console.log(event.target.value);
-    }
-    onInputClick(){
-        console.log('click');
-    }
-    onFormSubmit=(e)=>{
-        e.preventDefault();
-        console.log(this.state.term);
-        this.props.onSubmit(this.state.term); //props funtion from parent
-    }
-    render(){
-        return(
-            <div>
-                <form onSubmit={this.onFormSubmit}>
-                    <div>
-                        <label>Image Search</label>
-                        <input type="text" value={this.state.term} onClick={this.onInputClick} onChange={(e)=>{this.setState({term:e.target.value.toUpperCase()})}}/>
-                    </div>
-                </form>
-            </div>
-        )
-    }
+    return (
+        <div className="searchBar">
+            <TextField id="standard-basic" value={nameQuery} onChange={onSearchChange} label="Search Products" variant="standard" useformcontrol="true" />
+        </div>
+    )
 }
-export default App;
