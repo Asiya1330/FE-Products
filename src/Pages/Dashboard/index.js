@@ -1,42 +1,39 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Products from '../../Components/Product';
-import Footer from '../../Layouts/Footer';
-import Header from '../../Layouts/Header';
 import './style.css'
-
+import { useSelector, useDispatch } from 'react-redux'
+import Loading from '../../Components/Loading'
 import Container from '@mui/material/Container';
-
+import SearchBar from '../../Components/SearchBar'
+import Alert from '@mui/material/Alert';
 
 
 export default function Dashboard() {
-  const [product, setProduct] = useState();
-
-  const url = "http://localhost:3000/products";
-
-
-  useEffect(() => {
-    axios.get(url).then((res) => {
-      setProduct(res.data);
-      console.log(product, 'hu');
-    });
-
-  }, []);
+  const { error, success, products } = useSelector((state) => state)
 
   return (
-    <>
-      <Header></Header>
+    <React.Fragment>
+      {error ?
+        <Alert severity="error">{error}</Alert>
+        : null
+      }
+      {success ?
+        <Alert severity="success">
+          {success}
+        </Alert>
+        : null
+      }
+
+      <SearchBar></SearchBar>
       <Container>
-
         {
-
-          product ? product.map((product) => {
+          products ? products.map((product) => {
             return <Products product={product}></Products>
-          }) : 'Loading ...'
+          }) : <Loading></Loading>
         }
       </Container>
-      <Footer> </Footer>
-    </>
+    </React.Fragment>
   );
 };
 
