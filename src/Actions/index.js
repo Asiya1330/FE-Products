@@ -5,8 +5,9 @@ export const getQueryProducts = (queryParamName) => async (dispatch) => {
     try {
         dispatch({type:actiontypes.RESET_ERROR_MESSAGE,payload: null})
         const nameParam = queryParamName || null;
-        const { products } = await api.getQueryProducts(nameParam);
-        dispatch({ type: actiontypes.FETCH_QUERY_PRODUCTS, payload: products })
+        const { data } = await api.getQueryProducts(nameParam);
+        console.log(nameParam,data);
+        dispatch({ type: actiontypes.FETCH_QUERY_PRODUCTS, payload: data })
     }    
     catch (e) {
         console.log(e);
