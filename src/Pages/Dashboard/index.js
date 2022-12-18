@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Products from '../../Components/Product';
 import './style.css'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../../Components/Loading'
 import Container from '@mui/material/Container';
 import SearchBar from '../../Components/SearchBar'
