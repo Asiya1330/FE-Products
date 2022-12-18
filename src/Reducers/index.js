@@ -8,6 +8,7 @@ const products = (products = null, action) => {
       return action.payload;
     default:
       return products;
+      break;
   }
 }
 
@@ -25,9 +26,9 @@ const errorMessage = (state = null, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'RESET_ERROR_MESSAGE':
+    case actionTypes.RESET_ERROR_MESSAGE:
       return null;
-    case 'ERROR_OCCURED':
+    case actionTypes.ERROR_OCCURED:
       return state = payload;
     default:
       return state;
@@ -39,8 +40,10 @@ const succesMessage = (state = null, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'SUCCESS':
+    case actionTypes.SUCCESS:
       return payload;
+    case actionTypes.RESET_SUCCESS_MESSAGE:
+      return action.payload
     default:
       return state;
       break;
@@ -56,4 +59,3 @@ const allReducers = combineReducers({
 })
 
 export default allReducers
-
